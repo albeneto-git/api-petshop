@@ -1,10 +1,12 @@
 const Sequelize = require('sequelize')
+const config = require('config')
+
 const conexao = Sequelize(
-    'petshop',
-    'root',
-    'neto',
+    config.get('mysql.database'),
+    config.get('mysql.user'),
+    config.get('mysql.password'),
     {
-        host: '127.0.0.1',
+        host: config.get('mysql.host'),
         dialect: 'mysql'  
     }
 
