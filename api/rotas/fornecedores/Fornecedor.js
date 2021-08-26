@@ -38,7 +38,7 @@ class Fornecedor{
         const campos = ['empresa', 'email','categoria'];
         const dadosParaAtualizar = {};
         campos.forEach((campo) =>{
-            const valor = this[campo];
+            const valor = this[campo]; // this aqui representa a instancia de fornecedor.
             if(typeof valor === 'string' && valor.length > 0){
                 dadosParaAtualizar[campo] = valor;
             }
