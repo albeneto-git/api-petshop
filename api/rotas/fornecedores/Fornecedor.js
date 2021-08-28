@@ -33,7 +33,7 @@ class Fornecedor{
         this.versao          = encontrado.versao;
     }
 
-    async atualizar(){
+    async atualizar(){  
         await TabelaFornecedor.pegarPorId(this.id)
         const campos = ['empresa', 'email','categoria'];
         const dadosParaAtualizar = {};
@@ -50,5 +50,10 @@ class Fornecedor{
             TabelaFornecedor.atualizar(this.id, dadosParaAtualizar);
         })
     }
+
+    remover () {
+        return TabelaFornecedor.remover(this.id);
+    }
+
 }
 module.exports = Fornecedor
