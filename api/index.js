@@ -1,5 +1,6 @@
 const express = require('express')
 const bodyParser = require('body-parser')
+const config = require('config')
 const roteador = require('./rotas/fornecedores')
 const NaoEncontrado = require('./erros/NaoEncontrado')
 const CampoInvalido = require('./erros/CampoInvalido')
@@ -51,4 +52,4 @@ app.use((error, req, res, next) => {
         id: error.idErro
     }));
 })
-app.listen(3000, () => console.log('API esta rodando na porta 3000'))
+app.listen(config.get('api.port'), () => console.log('API esta rodando na porta 3000'))
