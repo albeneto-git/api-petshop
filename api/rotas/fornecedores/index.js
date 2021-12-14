@@ -70,4 +70,7 @@ roteador.delete('/:idFornecedor', async (req, res, next) =>{
     }
 })
 
+const roteadorProdutos = require('./produtos');
+roteador.use('/:idForncedor/produtos', roteadorProdutos);
+
 module.exports = roteador;
