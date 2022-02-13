@@ -10,7 +10,9 @@ module.exports = {
                 }
             }
         )
+        
+    },
+    inserir (dados){
+        return Modelo.create(dados)
     }
-
-
 }
