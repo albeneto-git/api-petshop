@@ -1,3 +1,4 @@
+const TabelaProduto = require('./TabelaProduto')
 const Tabela = require('./TabelaProduto')
 
 class Produto {
@@ -24,5 +25,10 @@ class Produto {
         this.dataAtualizacao = resultado.dataAtualizacao
         this.versao          = resultado.versao
     }
+
+    apagar() {
+        return Tabela.remover(this.id, this.fornecedor)
+    }
+
 }
 module.exports = Produto
