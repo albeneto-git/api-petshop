@@ -7,7 +7,8 @@ module.exports = {
             {
                 where: {
                     fornecedor: idFornecedor
-                }
+                },
+                raw: true
             }
         )
         
