@@ -36,5 +36,14 @@ module.exports = {
             throw new Error('Produto não foi encontrado!')
         }
         return encontrado
+    },
+    atualizar(dadosDoProduto, dadosParaAtualizar){
+        console.log(dadosDoProduto)
+        return Modelo.update(
+            dadosParaAtualizar,
+            {
+                where: dadosDoProduto
+            }
+        )
     }
 }
