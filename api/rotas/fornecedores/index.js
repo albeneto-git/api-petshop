@@ -86,4 +86,6 @@ const verificarFornecedor = async (req, res, next) =>{
 
 roteador.use('/:idFornecedor/produtos', verificarFornecedor, roteadorProdutos);
 
+
+
 module.exports = roteador;
