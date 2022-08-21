@@ -3,12 +3,11 @@ const instancia = require('../../../database')
 
 module.exports = {
 
-    listar(idFornecedor) {
+    listar(idFornecedor, criterios = {}) {
+        criterios.fornecedor = idFornecedor
         return Modelo.findAll(
             {
-                where: {
-                    fornecedor: idFornecedor
-                },
+                where: criterios,
                 raw: true
             }
         )
