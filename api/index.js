@@ -10,7 +10,12 @@ const formatosAceitos = require('./Serializador').formatosAceitos
 const SerializadorErro = require('./Serializador').SerializadorErro
 
 const app = express()
+
 app.use(bodyParser.json())
+app.use((req, res, next) =>{
+    res.set('X-Powered-By', 'Gatito Petshop')
+    next()
+})
 
 app.use((req, res, next) => {
     let formatoRequisitado = req.header('Accept');
@@ -52,4 +57,6 @@ app.use((error, req, res, next) => {
         id: error.idErro
     }));
 })
+
+
 app.listen(config.get('api.port'), () => console.log('API esta rodando na porta 3000'))
