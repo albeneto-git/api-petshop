@@ -14,9 +14,9 @@ const app = express()
 app.use(bodyParser.json())
 app.use((req, res, next) =>{
     res.set('X-Powered-By', 'Gatito Petshop')
+    res.set('Access-Control-Allow-Origin', '*')
     next()
 })
-
 app.use((req, res, next) => {
     let formatoRequisitado = req.header('Accept');
 
