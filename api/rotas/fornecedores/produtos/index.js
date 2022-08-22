@@ -24,6 +24,10 @@ roteador.post('/', async (req, res, next) => {
         const serializador = new Serializador(
             res.getHeader('Content-Type')
         )
+        res.set('Etag', produto.versao)
+        const timeStamp = (new Date(produto.dataAtualizacao)).getTime()
+        res.set('Last-Modifield', timeStamp)
+        res.set('Location', `/api/fornecedores/${produto.fornecedor}/produto/${produto.id}`)
         res.status(201)
         res.send(
             serializador.serializar(produto)
@@ -56,6 +60,9 @@ roteador.get('/:id', async(req, res, next) =>{
             res.getHeader('Content-Type'),
             ['preco', 'estoque', 'fornecedor', 'dataCriacao', 'dataAtualizacao', 'versao']          
         )
+        res.set('Etag', produto.versao)
+        const timeStamp = (new Date(produto.dataAtualizacao)).getTime()
+        res.set('Last-Modifield', timeStamp)
         res.send(
             serializador.serializar(produto)
         )    
@@ -78,6 +85,10 @@ roteador.put('/:id', async (req, res, next) => {
     
         const produto = new Produto(dados)
         await produto.atualizar()
+        await produto.carregar()
+        res.set('Etag', produto.versao)
+        const timeStamp = (new Date(produto.dataAtualizacao)).getTime()
+        res.set('Last-Modifield', timeStamp)
         res.status(204)
         res.end()
     } catch (error) {
@@ -95,6 +106,10 @@ roteador.post('/:id/diminuir-estoque', async (req, res, next) =>{
         await produto.carregar()
         produto.estoque = produto.estoque - req.body.quantidade
         await produto.diminuirEstoque()
+        await produto.carregar()
+        res.set('Etag', produto.versao)
+        const timeStamp = (new Date(produto.dataAtualizacao)).getTime()
+        res.set('Last-Modifield', timeStamp)
         res.status(204)
         res.end()
     } catch (error) {

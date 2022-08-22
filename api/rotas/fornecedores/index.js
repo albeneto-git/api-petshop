@@ -21,7 +21,7 @@ roteador.post('/', async (req, res, next) =>{
         res.status(201);
         const serializadorFornecedor = new SerializadorFornecedor(
             res.getHeader('Content-Type')
-        );        
+        );
         res.send(serializadorFornecedor.serializar(fornecedor));
     } catch (error) {
         next(error);
