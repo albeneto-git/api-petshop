@@ -32,8 +32,11 @@ app.use((req, res, next) => {
     res.setHeader('Content-Type', formatoRequisitado);
     next();
 })
-
 app.use('/api/fornecedores', roteador)
+
+const roteadorv2 = require('./rotas/fornecedores/rotas.v2')
+app.use('/api/v2/fornecedores', roteadorv2)
+
 app.use((error, req, res, next) => {
     let status = 500;
     if(error instanceof NaoEncontrado) {
@@ -57,6 +60,5 @@ app.use((error, req, res, next) => {
         id: error.idErro
     }));
 })
-
 
 app.listen(config.get('api.port'), () => console.log('API esta rodando na porta 3000'))
